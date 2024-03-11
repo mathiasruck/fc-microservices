@@ -1,0 +1,52 @@
+### Create Client 1
+
+POST http://localhost:3000/clients HTTP/1.1
+Content-Type: application/json
+
+{
+"name":"John Doe",
+"email": "j@j.com"
+}
+
+### Create Client 2
+POST http://localhost:3000/clients HTTP/1.1
+Content-Type: application/json
+
+{
+"name":"Jane Doe",
+"email": "jane@j.com"
+}
+
+### Create Account for client 1
+POST http://localhost:3000/accounts HTTP/1.1
+Content-Type: application/json
+
+{
+  "client_id":"b2261595-2aa8-4bf7-a976-97af8bbf8c92"
+}
+
+### Create Account for client 2
+POST http://localhost:3000/accounts HTTP/1.1
+Content-Type: application/json
+
+{
+  "client_id":"4b1492ed-47d7-49f5-9cff-c9b7745c0df6"
+}
+
+### Create Account for client 2
+POST http://localhost:3000/accounts HTTP/1.1
+Content-Type: application/json
+
+{
+  "client_id":"4b1492ed-47d7-49f5-9cff-c9b7745c0df6"
+}
+
+### Create Transaction 1
+POST http://localhost:3000/transactions HTTP/1.1
+Content-Type: application/json
+
+{
+  "account_id_from": "713ba205-4a9c-4692-86e3-10de32339873",
+  "account_id_to": "e6000564-fe53-44a8-8cb6-709582c95ed7",
+  "amount": 50
+}
