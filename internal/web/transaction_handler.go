@@ -22,9 +22,10 @@ func (h *WebTransactionHandler) CreateTransaction(w http.ResponseWriter, r *http
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	output, err := h.CreateTransactionUseCase.Execute(dto)
+	output, err := h.CreateTransactionUseCase.Execute(r.Context(), dto)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte(err.Error()))
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")

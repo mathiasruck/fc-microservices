@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"database/sql"
 	"fmt"
 	"github.com.br/mathiasruck/fc-ms-wallet/internal/database"
@@ -11,6 +12,7 @@ import (
 	"github.com.br/mathiasruck/fc-ms-wallet/internal/web"
 	"github.com.br/mathiasruck/fc-ms-wallet/internal/web/webserver"
 	"github.com.br/mathiasruck/fc-ms-wallet/pkg/events"
+	"github.com.br/mathiasruck/fc-ms-wallet/pkg/uow"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -28,11 +30,21 @@ func main() {
 
 	clentDb := database.NewClientDB(db)
 	accountDb := database.NewAccountDB(db)
-	transactionDb := database.NewTransactionDB(db)
+
+	ctx := context.Background()
+	uow := uow.NewUow(ctx, db)
+
+	uow.Register("AccountDB", func(tx *sql.Tx) interface{} {
+		return database.NewAccountDB(db)
+	})
+
+	uow.Register("TransactionDB", func(tx *sql.Tx) interface{} {
+		return database.NewTransactionDB(db)
+	})
+	createTransactionUseCase := create_transaction.NewCreateTransactionUseCase(uow, eventDispatcher, transactionCreatedEvent)
 
 	createClientUseCase := create_client.NewCreateClientUseCase(clentDb)
 	createAccountUseCase := create_account.NewCreateAccountUseCase(accountDb, clentDb)
-	createTransactionUseCase := create_transaction.NewCreateTransactionUseCase(transactionDb, accountDb, eventDispatcher, transactionCreatedEvent)
 
 	webserver := webserver.NewWebServer(":3000")
 
