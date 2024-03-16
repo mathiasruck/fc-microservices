@@ -11,7 +11,7 @@
     <groupId>com.mathiasruck</groupId>
     <artifactId>mathiasruck-wallet</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>mathiasruck-wallet</name>
     <description>mathiasruck-wallet</description>
     <properties>
