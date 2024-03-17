@@ -1,0 +1,60 @@
+@startuml
+set separator ::
+
+package com.mathiasruck.wallet {
+    package entities {
+        class Balance {
+            - Long Id
+            - String accountId
+            - BigDecimal balance
+        }
+    }
+    package dto {
+        class BalanceDto {
+            - String accountIdFrom
+            - BigDecimal balanceAccountIdFrom
+            - String accountIdTo
+            - BigDecimal balanceAccountIdTo
+        }
+    }
+
+    package service {
+        interface BalanceService {
+            + void update balance(BalanceDto dto)
+        }
+        package impl{
+            class BalanceServiceImpl {
+                + void update balance(BalanceDto dto)
+            }
+        }
+    }
+
+    package usecase {
+        package impl {
+            class UpdateBalanceUseCaseImpl{
+                void updateBalanceUseCase()
+            }
+        }
+        interface UpdateBalanceUseCase{
+            void updateBalanceUseCase()
+        }
+    }
+
+    package events.kafka {
+        class KafkaConsumer {
+            + void consume()
+        }
+
+    }
+
+}
+
+BalanceServiceImpl ..|> BalanceService : implements
+BalanceServiceImpl --> BalanceDto : uses
+BalanceServiceImpl --> Balance : uses
+
+UpdateBalanceUseCaseImpl ..|> UpdateBalanceUseCase : implements
+UpdateBalanceUseCaseImpl --> BalanceServiceImpl : uses
+
+KafkaConsumer --> UpdateBalanceUseCase : uses
+@enduml
