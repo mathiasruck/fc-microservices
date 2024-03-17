@@ -1,4 +1,4 @@
-package com.mathiasruck.kafkajava;
+package com.mathiasruck.wallet;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(MathiasruckKafkaJavaApplication.class);
+        return application.sources(MathiasruckWallet.class);
     }
 
 }

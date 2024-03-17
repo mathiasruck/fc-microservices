@@ -1,10 +1,10 @@
-package com.mathiasruck.kafkajava;
+package com.mathiasruck.wallet;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MathiasruckKafkaJavaApplicationTests {
+class MathiasruckWalletTests {
 
     @Test
     void contextLoads() {
