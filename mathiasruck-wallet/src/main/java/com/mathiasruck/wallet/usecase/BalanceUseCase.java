@@ -14,5 +14,6 @@ public class BalanceUseCase {
 
     public BalanceUseCaseOutputDto getBalance(String accountId) {
         BalanceOutputDto balance = balanceService.getBalance(accountId);
+        return new BalanceUseCaseOutputDto(balance.accountId(), balance.balance());
     }
 }

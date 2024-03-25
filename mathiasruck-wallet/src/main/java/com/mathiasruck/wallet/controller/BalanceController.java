@@ -1,5 +1,6 @@
 package com.mathiasruck.wallet.controller;
 
+import com.mathiasruck.wallet.controller.dto.BalanceWebOutputDto;
 import com.mathiasruck.wallet.usecase.BalanceUseCase;
 import com.mathiasruck.wallet.usecase.dto.BalanceUseCaseOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class BalanceController {
     private BalanceUseCase useCase;
 
     @GetMapping("/{account_id}")
-    public @ResponseBody BalanceUseCaseOutputDto getBalance(@PathVariable String account_id) {
+    public @ResponseBody BalanceWebOutputDto getBalance(@PathVariable String account_id) {
         BalanceUseCaseOutputDto balance = useCase.getBalance(account_id);
-        return new
+        return new BalanceWebOutputDto(balance.accountId(), balance.balance());
     }
 }

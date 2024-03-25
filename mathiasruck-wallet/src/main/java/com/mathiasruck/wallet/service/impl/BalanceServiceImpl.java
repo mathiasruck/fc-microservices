@@ -3,7 +3,7 @@ package com.mathiasruck.wallet.service.impl;
 import com.mathiasruck.wallet.entities.Balance;
 import com.mathiasruck.wallet.repository.BalanceRepository;
 import com.mathiasruck.wallet.service.BalanceService;
-import com.mathiasruck.wallet.service.dto.BalanceDto;
+import com.mathiasruck.wallet.service.dto.BalanceInputDto;
 import com.mathiasruck.wallet.service.dto.BalanceOutputDto;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class BalanceServiceImpl implements BalanceService {
     }
 
     @Override
-    public void updateBalance(BalanceDto dto) {
+    public void updateBalance(BalanceInputDto dto) {
         Balance balanceTo = balanceRepository.getByAccountId(dto.accountIdTo());
         balanceTo.setBalance(dto.balanceAccountTo());
         balanceRepository.save(balanceTo);
@@ -29,7 +29,7 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     public BalanceOutputDto getBalance(String accountId) {
-        Balance balance = balanceRepository.getByAccountId( accountId);
+        Balance balance = balanceRepository.getByAccountId(accountId);
         return new BalanceOutputDto(balance.getAccountId(), balance.getBalance());
     }
 }
