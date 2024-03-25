@@ -1,0 +1,10 @@
+server:
+  port: 3003
+spring:
+  application:
+    name: mathiasruck-wallet
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+    consumer:
+      group-id: wallet
+      auto-offset-reset: latest

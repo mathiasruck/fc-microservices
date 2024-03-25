@@ -23,7 +23,7 @@ type CreateTransactionOutputDTO struct {
 
 type BalanceUpdatedOutputDto struct {
 	AccountIDFrom        string  `json:"account_id_from"`
-	AccountIDTO          string  `json:"account_idto"`
+	AccountIDTO          string  `json:"account_id_to"`
 	BalanceAccountIDFrom float64 `json:"balance_account_id_from"`
 	BalanceAccountIDTo   float64 `json:"balance_account_id_to"`
 }
@@ -101,7 +101,7 @@ func (uc *CreateTransactionUseCase) Execute(ctx context.Context, input CreateTra
 	uc.TransactionCreated.SetPayload(output)
 	uc.EventDispatcher.Dispatch(uc.TransactionCreated)
 
-	uc.BalanceUpdated.SetPayload(output)
+	uc.BalanceUpdated.SetPayload(balanceUpdatedOutput)
 	uc.EventDispatcher.Dispatch(uc.BalanceUpdated)
 
 	return output, nil

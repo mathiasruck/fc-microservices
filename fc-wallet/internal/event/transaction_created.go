@@ -1,10 +1,12 @@
 package event
 
-import "time"
+import (
+	"time"
+)
 
 type TransactionCreated struct {
-	Name    string
-	Payload interface{}
+	Name    string      `json:"name"`
+	Payload interface{} `json:"payload"`
 }
 
 func NewTransactionCreated() *TransactionCreated {
@@ -13,18 +15,18 @@ func NewTransactionCreated() *TransactionCreated {
 	}
 }
 
-func (e TransactionCreated) GetName() string {
+func (e *TransactionCreated) GetName() string {
 	return e.Name
 }
 
-func (e TransactionCreated) GetPayload() interface{} {
+func (e *TransactionCreated) GetPayload() interface{} {
 	return e.Payload
 }
 
-func (e TransactionCreated) SetPayload(payload interface{}) {
+func (e *TransactionCreated) SetPayload(payload interface{}) {
 	e.Payload = payload
 }
 
-func (e TransactionCreated) GetDateTime() time.Time {
+func (e *TransactionCreated) GetDateTime() time.Time {
 	return time.Now()
 }
