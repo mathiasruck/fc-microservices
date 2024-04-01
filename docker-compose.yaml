@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-  goapp:
-    build: fc-wallet
-    platform: linux/amd64
-    ports:
-      - 8080:8080
-    depends_on:
-      - mysql
+  #  goapp:
+  #    build: fc-wallet
+  #    platform: linux/amd64
+  #    ports:
+  #      - 8080:8080
+  #    depends_on:
+  #      - mysql
 
   mysql:
     image: mysql:5.7
@@ -19,17 +19,19 @@ services:
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3306:3306"
+    volumes:
+      - .docker/mysql-wallet:/var/lib/mysql
 
-  mathiasruck-wallet:
-    build: mathiasruck-wallet
-    environment:
-      MYSQL_HOST: mysql-mathiasruck-wallet
-      MYSQL_USERNAME: root
-      MYSQL_PASSWORD: root
-    ports:
-      - "3003:8081"
-    depends_on:
-      - mysql-mathiasruck-wallet
+  #  mathiasruck-wallet:
+  #    build: mathiasruck-wallet
+  #    environment:
+  #      MYSQL_HOST: mysql-mathiasruck-wallet
+  #      MYSQL_USERNAME: root
+  #      MYSQL_PASSWORD: root
+  #    ports:
+  #      - "3003:8081"
+  #    depends_on:
+  #      - mysql-mathiasruck-wallet
 
   mysql-mathiasruck-wallet:
     image: mysql:5.7

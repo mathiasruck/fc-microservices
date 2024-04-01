@@ -42,9 +42,3 @@ Content-Type: application/json
   "account_id_to": "2311e1f8-0af7-4d7d-9c59-7db23af80d96",
   "amount": 5
 }
-
-### Get balance for Account 1
-GET http://localhost:3003/balances/3f19de80-a22c-48a6-8c76-69a7cb792aff HTTP/1.1
-
-### Get balance for Account 2
-GET http://localhost:3003/balances/2311e1f8-0af7-4d7d-9c59-7db23af80d96 HTTP/1.1

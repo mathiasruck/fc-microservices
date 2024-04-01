@@ -1,0 +1,41 @@
+create database wallet;
+
+use wallet;
+
+# drop table transactions;
+# drop table accounts;
+# drop table clients;
+
+create table IF NOT EXISTS clients
+(
+    id         varchar(255),
+    name       varchar(255),
+    email      varchar(255),
+    created_at date
+);
+create table IF NOT EXISTS accounts
+(
+    id         varchar(255),
+    client_id  varchar(255),
+    balance    float,
+    created_at date
+);
+create table IF NOT EXISTS transactions
+(
+    id              varchar(255),
+    account_id_from varchar(255),
+    account_id_to   varchar(255),
+    amount          float,
+    created_at      date
+);
+
+
+-- After accounts are created using api/client.http
+UPDATE accounts
+SET balance = 1000;
+
+# select *
+# from accounts;
+#
+# select *
+# from transactions;

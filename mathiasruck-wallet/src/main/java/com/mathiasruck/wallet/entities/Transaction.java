@@ -1,18 +1,17 @@
 package com.mathiasruck.wallet.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "TRANSACTION", uniqueConstraints = @UniqueConstraint(columnNames = {"ID", "TRANSACTION_ID"}))
-public class Transaction {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@Table(name = "TRANSACTION", uniqueConstraints = @UniqueConstraint(columnNames = {"TRANSACTION_ID"}))
+public class Transaction extends BaseEntity {
 
     @Column(name = "TRANSACTION_ID")
     private String transactionId;

@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: mathiasruck-wallet
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
   kafka:
     bootstrap-servers: ${KAFKA_HOST:localhost}:9092
     consumer:
