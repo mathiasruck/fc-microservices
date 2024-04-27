@@ -9,15 +9,6 @@ Desenvolva um microsserviço em sua linguagem de preferência que seja capaz de:
 
 ## Requisitos para entrega
 
-- [ ] Tudo deve rodar via Docker / Docker-compose
-- [ ] Com um único docker-compose up -d todos os microsserviços, incluindo o da wallet core precisam estar disponíveis
-  para que possamos fazer a correção.
-- [ ] Não esqueça de rodar migrations e popular dados fictícios em ambos bancos de dados (wallet core e o microsserviço
-  de balances) de forma automática quando os serviços subirem.
-- [x] Gere o arquivo ".http" para realizarmos as chamadas em seu microsserviço da mesma forma que fizemos no
-  microsserviço " wallet core"
-- [x] Disponibilize o microsserviço na porta: 3003.
-
 ## Observações
 
 - Nosso objetivo com esse desafio não é corrigir seu código ou verificar a qualidade da sua aplicação, mas sim
@@ -28,25 +19,39 @@ Desenvolva um microsserviço em sua linguagem de preferência que seja capaz de:
 
 # TODO
 
+- [ ] Tudo deve rodar via Docker / Docker-compose
+- [ ] Com um único docker-compose up -d todos os microsserviços, incluindo o da wallet core precisam estar disponíveis
+  para que possamos fazer a correção.
+- [ ] Não esqueça de rodar migrations e popular dados fictícios em ambos bancos de dados (wallet core e o microsserviço
+  de balances) de forma automática quando os serviços subirem.
+- [x] Gere o arquivo ".http" para realizarmos as chamadas em seu microsserviço da mesma forma que fizemos no
+  microsserviço " wallet core"
+- [x] Disponibilize o microsserviço na porta: 3003.
+
+## Java
+
 - [x] Criar registros via aplicação e exportar para sql
-    - [ ] Projeto Java/Spring
+    - [x] Projeto Java/Spring
         - [x] banco
-        - [ ] dados
-    - [x] Projeto Go
-- [ ] Adicionar gereneciador de migrations ao projeto GO
-- [ ] Adicionar os scripts de insert e create table gereneciador de migrations
-- [ ] Adicionar liquibase ao projeto Java
-- [ ] Adicionar scripts ao liquibase
+        - [x] dados
+- [x] Adicionar liquibase ao projeto Java
+- [x] Adicionar os scripts de insert e create table gereneciador de migrations
+- [x] Adicionar scripts ao liquibase
 - [x] Persistir mensagens recebidas do Kafka pelo projeto Java no banco
 - [x] Retornar dados das transações recebidas e registradas no banco do projeto Java na URL
 - [x] Criar arquivo .http com as chamadas para o projeto Java, utilizando os dados pré-inseridos
+- [x] Add base entity with the basics for an entity to exist
+- [X] Externalize username and password of DB
+
+## Go
+
+- [x] Adicionar gereneciador de migrations
+- [x] Adicionar os scripts de insert e create table gereneciador de migrations
 - [ ] Final validation: Apagar todo o docker e ver se tá tudo subindo e funcionando normal
     - [ ] Add delay ao início do Kafka?
 
 # Improvements
 
-- [ ] Add base entity with the basics for an entity to exist
-- [ ] Externalize username and password of DB
 - [ ] Logs: Use spring logs to log Kafka messages
     - [ ] Use advisor to log
 - [ ] Return a better exception on HTTP methods
