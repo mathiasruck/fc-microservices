@@ -44,7 +44,7 @@ func main() {
 	}
 
 	configMap := ckafka.ConfigMap{
-		"bootstrap.servers": "localhost:9092",
+		"bootstrap.servers": "kafka:29092",
 		"group.id":          "wallet",
 	}
 

@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   goapp:
@@ -8,30 +8,34 @@ services:
       - 8080:8080
     depends_on:
       - mysql
-
+      - kafka
   mysql:
     image: mysql:5.7
     platform: linux/amd64
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: wallet
-      MYSQL_PASSWORD: root
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3306:3306"
     volumes:
-      - .docker/mysql-wallet:/var/lib/mysql
+      - mysql-wallet:/var/lib/mysql
 
-  #  mathiasruck-wallet:
-  #    build: mathiasruck-wallet
-  #    environment:
-  #      MYSQL_HOST: mysql-mathiasruck-wallet
-  #      MYSQL_USERNAME: root
-  #      MYSQL_PASSWORD: root
-  #    ports:
-  #      - "3003:8081"
-  #    depends_on:
-  #      - mysql-mathiasruck-wallet
+  mathiasruck-wallet:
+    build: mathiasruck-wallet
+    environment:
+      MYSQL_HOST: mysql-mathiasruck-wallet
+      MYSQL_PORT: 3306
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 29092
+      KAFKA_GROUP_ID: wallet
+    ports:
+      - "3003:3003"
+    depends_on:
+      - mysql-mathiasruck-wallet
+      - kafka
 
   mysql-mathiasruck-wallet:
     image: mysql:5.7
@@ -39,12 +43,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mathiasruck-wallet
-      MYSQL_PASSWORD: root
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3307:3306"
     volumes:
-      - .docker/mysql-mathiasruck-wallet:/var/lib/mysql
+      - mysql-mathiasruck-wallet:/var/lib/mysql
 
   zookeeper:
     image: "confluentinc/cp-zookeeper:6.1.0"
@@ -95,3 +98,9 @@ services:
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
       PORT: 9021
+
+volumes:
+  mysql-wallet:
+    driver: local
+  mysql-mathiasruck-wallet:
+    driver: local
