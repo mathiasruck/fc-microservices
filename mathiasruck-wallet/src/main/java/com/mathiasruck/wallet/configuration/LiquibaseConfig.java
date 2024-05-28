@@ -15,7 +15,7 @@ public class LiquibaseConfig {
         liquibase.setDataSource(dataSource);
         liquibase.setChangeLog("classpath:/db/changelog/db.changelog-master.yaml");
 //        liquibase.setContexts("development,test,production"); // Specify contexts, if needed
-        liquibase.setShouldRun(true); // Should Liquibase migrations be run automatically or not
+        liquibase.setShouldRun(true); // Should Liquibase migrations run automatically
         return liquibase;
     }
 }

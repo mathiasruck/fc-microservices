@@ -8,3 +8,5 @@ spring:
     consumer:
       group-id: ${KAFKA_GROUP_ID:wallet}
       auto-offset-reset: latest
+test:
+  topic: embedded-test-topic
